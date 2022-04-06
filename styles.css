@@ -10,7 +10,7 @@ red - #ee5253
 
 * {
     margin: 0;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 nav {
@@ -28,17 +28,43 @@ main {
     align-items: center;
 }
 
+h2 {
+    padding: 10px;
+}
+
+button {
+    background-color: teal;
+    height: 50px;
+    width: 100px;
+    margin: 10px;
+}
+
+div {
+    padding: 10px;
+}
+
 .red-star {
     color: #EE5253;
 }
 
 .white-square {
     background-color: rgba(255, 255, 255, .9);
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
 }
 
 .pot {
-    height: 300px;
-    width: 300px;
+    height: 150px;
+    width: 150px;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#response {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
