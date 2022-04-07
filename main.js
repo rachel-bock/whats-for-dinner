@@ -55,17 +55,19 @@ var sides = [
     'Hush Puppies'
 ]
 
-
-
 // ~~~~~~~~~~ Event Listeners ~~~~~~~~~~~~~~~~~~~~
-
+letsCookButton.addEventListener('click', getUserOption);
 
 
 // ~~~~~~~~~~ Functions in Alphabetic order ~~~~~~~~~~~~~
 
+function getUserOption() {
+    // When the "Let's cook!" button is clicked, this 
+    // gets the user's option from the radio button inputs.
+}
+
 function render() {   
     mealChoice.innerHtML = `You should make: 
-        <br>
         <h3> ${shouldCook}!</h3>`
 }
 
