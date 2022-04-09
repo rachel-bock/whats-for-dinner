@@ -2,9 +2,11 @@
 var letsCookButton = document.querySelector('.cook-btn');
 var mealChoice = document.querySelector('.meal-choice');
 var cookPotImage = document.querySelector('.pot');
+var mealCourses = document.getElementsByName('meal-courses');
 
 // ~~~~~~~~~~~ Variables ~~~~~~~~~~~~~~~~~~
 var desserts = [
+    'Iced Oatmeal Cookies',
     'Apple Pie',
     'Lemon Meringue Pie',
     'Black Forest Cake',
@@ -25,6 +27,7 @@ var desserts = [
 ]
 
 var mains = [
+    'Chicken Vindaloo',
     'Spaghetti and Meatballs',
     'Pineapple Chicken',
     'Shakshuka',
@@ -40,9 +43,8 @@ var mains = [
     'Margarita Pizza'
 ]
 
-// var shouldCook = '';
-
 var sides = [
+    'Soft Pretzels',
     'Miso Glazed Carrots',
     'Coleslaw',
     'Garden Salad',
@@ -61,38 +63,73 @@ letsCookButton.addEventListener('click', getUserOption);
 
 // ~~~~~~~~~~ Functions in Alphabetic order ~~~~~~~~~~~~~
 
+// function - pull random meal item from array into render.
+function getDish(dishArray) {
+    var index = getRandomIndex(dishArray);
+    console.log(dishArray, '<<< getDish line 69');
+    console.log(index, '<<< index at line 70');
+    
+    return dishArray[index];
+}
+
 // function - select random index for side, main dish, or dessert
-
-
+function getRandomIndex(dishArray) {
+    return Math.floor(Math.random() * dishArray.length);
+}
 
 function getUserOption() {
     // When the "Let's cook!" button is clicked, this 
     // gets the user's option from the radio button inputs.
     // If entire meal, run render meal instead of render().
+
+    var selection = '';
+
+    for (var i = 0; i < mealCourses.length; i++) {
+        if (mealCourses[i].checked) {
+            console.log(mealCourses[i].checked);
+            prepShouldCook(mealCourses[i].value);
+        }
+    }
 }
-
-
-
-// function - pull random meal item from array into render.
-
-// function - prepare data model shouldCook for rendering.
-
-
 
 // function - change class hidden on pot.
 function hideCookPot() {
-    cookPotImage.classList.toggle('hidden');
+    cookPotImage.classList.add('hidden');
 }
 
+// function - prepare data model for rendering.
+function prepShouldCook(dishType) {
+
+    hideCookPot();
+    console.log(dishType);
+
+    switch (dishType) {
+        case 'sides':
+            render(getDish(sides));
+            break;
+        case 'mains':        
+            render(getDish(mains));
+            break;
+        case 'desserts':
+            render(getDish(desserts));
+            break;
+        case 'meal':
+            console.log('Call getDish for all three and then call the meal render function');
+            renderMeal(getDish(sides), getDish(mains), getDish(desserts));
+            break;
+        default: 
+            console.log(`Sorry.  DishType is unknown.`);
+    }
+}
 
 // function - render results.
 function render(shouldCook) {   
-    mealChoice.innerHtML = `You should make: 
-        <h3> ${shouldCook}!</h3>`
+    console.log(shouldCook);
+    mealChoice.innerHTML = `You should make: <br>${shouldCook}!`;
 }
 
 // function - renderMeal with 3 parameters.
 function renderMeal(side, main, dessert) {
-    mealChoice.innerHtML = `You should make: 
-    <h3> ${main} with a side of ${side} and ${dessert} for dessert!</h3>`
+    console.log(side, main, dessert);
+    mealChoice.innerHtML = `You should make: <br> ${main} with a side of ${side} and ${dessert} for dessert!`
 }
