@@ -63,6 +63,10 @@ div {
     width: 150px;
 }
 
+.meal-choice {
+    align-content: center;
+}
+
 #input-form {
     display: flex;
     flex-direction: column;
