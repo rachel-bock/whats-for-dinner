@@ -10,7 +10,7 @@ red - #ee5253
 
 * {
     margin: 0;
-    /* border: 2px solid red; */
+    font-family: 'Roboto', sans-serif;
 }
 
 nav {
