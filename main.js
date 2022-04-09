@@ -65,10 +65,7 @@ letsCookButton.addEventListener('click', getUserOption);
 
 // function - pull random meal item from array into render.
 function getDish(dishArray) {
-    var index = getRandomIndex(dishArray);
-    console.log(dishArray, '<<< getDish line 69');
-    console.log(index, '<<< index at line 70');
-    
+    var index = getRandomIndex(dishArray);   
     return dishArray[index];
 }
 
@@ -82,11 +79,8 @@ function getUserOption() {
     // gets the user's option from the radio button inputs.
     // If entire meal, run render meal instead of render().
 
-    var selection = '';
-
     for (var i = 0; i < mealCourses.length; i++) {
         if (mealCourses[i].checked) {
-            console.log(mealCourses[i].checked);
             prepShouldCook(mealCourses[i].value);
         }
     }
@@ -101,7 +95,6 @@ function hideCookPot() {
 function prepShouldCook(dishType) {
 
     hideCookPot();
-    console.log(dishType);
 
     switch (dishType) {
         case 'sides':
@@ -114,7 +107,6 @@ function prepShouldCook(dishType) {
             render(getDish(desserts));
             break;
         case 'meal':
-            console.log('Call getDish for all three and then call the meal render function');
             renderMeal(getDish(sides), getDish(mains), getDish(desserts));
             break;
         default: 
@@ -124,12 +116,10 @@ function prepShouldCook(dishType) {
 
 // function - render results.
 function render(shouldCook) {   
-    console.log(shouldCook);
     mealChoice.innerHTML = `You should make: <br>${shouldCook}!`;
 }
 
 // function - renderMeal with 3 parameters.
 function renderMeal(side, main, dessert) {
-    console.log(side, main, dessert);
-    mealChoice.innerHtML = `You should make: <br> ${main} with a side of ${side} and ${dessert} for dessert!`
+    mealChoice.innerHTML = `You should make: <br> ${main} with a side of ${side} and ${dessert} for dessert!`
 }
